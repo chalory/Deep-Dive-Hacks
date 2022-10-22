@@ -1,0 +1,53 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 100%;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.05rem;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+@media only screen and (max-width: 1200px) {
+    html {
+        font-size: 75%;
+    }
+
+    body {
+        font-size: 1.5rem;
+    }
+}
+@media only screen and (max-width: 900px) {
+    html {
+        font-size: 60%;
+    }
+    body {
+        font-size: 1.25rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    html {
+        font-size: 50%;
+    }
+}
