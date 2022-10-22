@@ -10,22 +10,24 @@
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="styles/main.css" />
+        <link rel="stylesheet" href="../static/styles/main.css" />
         <script src="scripts/main.js" defer></script>
-        <title>Document</title>
+        <script src="{{url_for('static', filename='../static/scripts/main.js')}}"></script>
+
+        <title>DeepDiveHacks</title>
     </head>
     <body>
         <canvas class="canvas-1"></canvas>
 
         <div class="icon-btn-container">
             <button class="bg-music-btn icon-btn">
-                <img src="assets/icons/inactive-sfx-icon.png" alt="" />
+                <img src="../static/assets/icons/inactive-sfx-icon.png" alt="" />
             </button>
             <button class="icon-btn">
-                <img src="assets/icons/info-icon.png" alt="" />
+                <img src="../static/assets/icons/info-icon.png" alt="" />
             </button>
             <button class="icon-btn">
-                <img src="assets/icons/settings-icon.png" alt="" />
+                <img src="../static/assets/icons/settings-icon.png" alt="" />
             </button>
         </div>
 
@@ -48,11 +50,11 @@
         <div class="info-box-container">
             <div class="info-box">
                 <button class="close-btn">
-                    <img src="assets/icons/close-icon.png" alt="Close" />
+                    <img src="../static/assets/icons/close-icon.png" alt="Close" />
                 </button>
 
                 <div class="upper-content">
-                    <img class="species-img" src="assets/animals/turtle.png" alt="" />
+                    <img class="species-img" src="../static/assets/animals/turtle.png" alt="" />
                     <p class="species-story">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel perferendis
                         assumenda placeat voluptatibus, quasi dolorem beatae, dolorum sit, modi ipsa
@@ -62,7 +64,11 @@
 
                     <div class="species-stats">
                         <div class="species-stats__bar">
-                            <img class="heart-icon" src="assets/icons/heart-icon.png" alt="" />
+                            <img
+                                class="heart-icon"
+                                src="../static/assets/icons/heart-icon.png"
+                                alt=""
+                            />
 
                             <svg
                                 class="likes-svg"
@@ -102,7 +108,7 @@
                 </div>
 
                 <button class="facts-btn">
-                    <img src="assets/icons/question-mark-icon.png" alt="" />
+                    <img src="../static/assets/icons/question-mark-icon.png" alt="" />
                 </button>
 
                 <div class="lower-content">
