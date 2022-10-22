@@ -1,5 +1,120 @@
-<form action="{{ url_for("gfg")}}" method="post">
-    <label for="firstname">First Name:</label>
-    <input type="text" id="firstname" name="fname" placeholder="firstname">
-    
-    <button type="submit">Login</button>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles/main.css" />
+        <script src="scripts/main.js" defer></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <canvas class="canvas-1"></canvas>
+
+        <div class="icon-btn-container">
+            <button class="bg-music-btn icon-btn">
+                <img src="assets/icons/inactive-sfx-icon.png" alt="" />
+            </button>
+            <button class="icon-btn">
+                <img src="assets/icons/info-icon.png" alt="" />
+            </button>
+            <button class="icon-btn">
+                <img src="assets/icons/settings-icon.png" alt="" />
+            </button>
+        </div>
+
+        <div class="ocean">
+            <div class="bubble bubble--1"></div>
+            <div class="bubble bubble--2"></div>
+            <div class="bubble bubble--3"></div>
+            <div class="bubble bubble--4"></div>
+            <div class="bubble bubble--5"></div>
+            <div class="bubble bubble--6"></div>
+            <div class="bubble bubble--7"></div>
+            <div class="bubble bubble--8"></div>
+            <div class="bubble bubble--9"></div>
+            <div class="bubble bubble--10"></div>
+            <div class="bubble bubble--11"></div>
+            <div class="bubble bubble--12"></div>
+            <div id="octocat"></div>
+        </div>
+
+        <div class="info-box-container">
+            <div class="info-box">
+                <button class="close-btn">
+                    <img src="assets/icons/close-icon.png" alt="Close" />
+                </button>
+
+                <div class="upper-content">
+                    <img class="species-img" src="assets/animals/turtle.png" alt="" />
+                    <p class="species-story">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel perferendis
+                        assumenda placeat voluptatibus, quasi dolorem beatae, dolorum sit, modi ipsa
+                        ducimus odit eveniet minima illo laudantium labore distinctio accusamus
+                        quas.
+                    </p>
+
+                    <div class="species-stats">
+                        <div class="species-stats__bar">
+                            <img class="heart-icon" src="assets/icons/heart-icon.png" alt="" />
+
+                            <svg
+                                class="likes-svg"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 -0.5 38 9"
+                                shape-rendering="crispEdges"
+                            >
+                                <metadata>
+                                    Made with Pixels to Svg https://codepen.io/shshaw/pen/XbxvNj
+                                </metadata>
+                                <path
+                                    stroke="#222034"
+                                    d="M2 2h1M3 2h32M3  3h1M2 3h1M35 3h1M3 4h1M2 4h1M35 4h1M3  5h1M2 5h1M35 5h1M3 6h32M3"
+                                />
+
+                                <path stroke="#323c39" d="M3 3h32" />
+                                <path stroke="#494d4c" d="M3 4h32M3 5h32" />
+                                <!-- Fill container -->
+                                <svg x="3" y="2.5" width="32" height="3">
+                                    <rect class="likes_fill" height="3" />
+                                </svg>
+                            </svg>
+                        </div>
+
+                        <div class="species-stats__text">
+                            <p>
+                                Did you know that only
+                                <strong><span class="num-of-likes">67</span></strong> out of
+                                <strong><span class="max-likes">100</span></strong> people likes
+                                <em>
+                                    <span class="current-animal">Turtles</span>
+                                </em>
+                                ?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="facts-btn">
+                    <img src="assets/icons/question-mark-icon.png" alt="" />
+                </button>
+
+                <div class="lower-content">
+                    <textarea
+                        placeholder="What do you think about turtles?"
+                        name=""
+                        id=""
+                        cols="30"
+                        rows="10"
+                    ></textarea>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
