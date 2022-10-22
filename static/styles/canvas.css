@@ -1,0 +1,29 @@
+.canvas-1 {
+    width: 100vw;
+    height: 100vh;
+    /* background: linear-gradient(to bottom, lightblue, darkblue, black); */
+    /* background: -webkit-radial-gradient(circle, #85e0f5, #2f2727); */
+    /* background: linear-gradient(to bottom, #b4e4f6, #7acff0, #0aa7e5); */
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        url("../assets/images/ocean-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+.icon-btn-container {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+}
+.icon-btn-container button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.icon-btn-container img {
+    height: 60px;
+    object-fit: contain;
+}
