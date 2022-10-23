@@ -11,8 +11,8 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="../static/styles/main.css" />
-        <script src="scripts/main.js" defer></script>
-        <script src="{{url_for('static', filename='../static/scripts/main.js')}}"></script>
+        <!-- <script src="{{url_for('static', filename='../static/scripts/main.js')}}"></script>  -->
+        <script src="../static/scripts/main.js" defer></script>
 
         <title>DeepDiveHacks</title>
     </head>
@@ -49,7 +49,7 @@
 
         <div class="info-box-container">
             <div class="info-box">
-                <button class="close-btn">
+                <button class="close-btn bubble-btn">
                     <img src="../static/assets/icons/close-icon.png" alt="Close" />
                 </button>
 
@@ -103,22 +103,32 @@
                                 </em>
                                 ?
                             </p>
+                            <div class="prediction-result">
+                                <p class="cohere-label">Cohere Prediction:</p>
+                                <p class="user-response-result">
+                                    Lorem ipsum dolor sit amet consectetur.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <button class="facts-btn">
+                <button class="facts-btn bubble-btn">
                     <img src="../static/assets/icons/question-mark-icon.png" alt="" />
                 </button>
 
                 <div class="lower-content">
-                    <textarea
-                        placeholder="What do you think about turtles?"
-                        name=""
-                        id=""
-                        cols="30"
-                        rows="10"
-                    ></textarea>
+                    <form action="#" method="post" class="user-response-form">
+                        <textarea
+                            class="user-response"
+                            placeholder="What do you think about them?"
+                            name="user-response"
+                            id=""
+                            cols="30"
+                            rows="10"
+                        ></textarea>
+                        <button type="submit">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
