@@ -1,3 +1,60 @@
+const userResponseForm = document.querySelector(".user-response-form");
+const userResponse = userResponseForm.querySelector(".user-response");
+
+const predictionResultContainer = document.querySelector(".prediction-result");
+const userResponseResult = predictionResultContainer.querySelector(".user-response-result");
+
+userResponseForm.addEventListener("submit", e => {
+    e.preventDefault();
+    console.log("submit");
+
+    const userResponseValue = userResponse.value?.trim() || "";
+
+    fetch("/index", {
+        headers: {
+            "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+            userResponse: userResponseValue,
+        }),
+    })
+        .then(response => {
+            if (response.ok) {
+                response.json().then(response => {
+                    const { final } = response;
+                    if (!final) return;
+
+                    const numberPattern = /\d+/g;
+                    const results = final.match(numberPattern);
+                    console.log(results);
+
+                    predictionResultContainer.classList.add("show");
+
+                    // positive review
+                    if (results[0] === "1") {
+                        userResponseResult.innerHTML = "Glad you love them too!";
+                    } else if (results[1] === "1") {
+                        userResponseResult.innerHTML = "Sad to know you don't like them.";
+                    } else {
+                        userResponseResult.innerHTML = "Neutral response.";
+                    }
+
+                    u;
+                });
+            } else {
+                userResponseResult.innerHTML = "Sorry, something went wrong.";
+                throw Error("Something went wrong");
+            }
+
+            // clear textarea
+            userResponse.value = "";
+        })
+        .catch(error => {
+            console.log(error);
+        });
+});
+
 const canvas = document.querySelector(".canvas-1");
 
 const infoBoxContainer = document.querySelector(".info-box-container");
@@ -22,7 +79,7 @@ factsBtn.addEventListener("click", e => {
 const ctx = canvas.getContext("2d");
 
 // const backgroundImg = new Image();
-// backgroundImg.src = "../assets/images/ocean-bg.jpg";
+// backgroundImg.src = "../static/assets/images/ocean-bg.jpg";
 
 // backgroundImg.addEventListener("load", e => {
 //     ctx.drawImage(backgroundImg, 0, 0);
@@ -31,7 +88,7 @@ const ctx = canvas.getContext("2d");
 const bgMusicBtn = document.querySelector(".bg-music-btn");
 const bgMusicBtnIcon = document.querySelector(".bg-music-btn img");
 const bgMusic = document.createElement("audio");
-bgMusic.src = "../assets/sfx/bg-music.wav";
+bgMusic.src = "../static/assets/sfx/bg-music.wav";
 bgMusic.loop = true;
 bgMusic.volume = 0.35;
 
@@ -40,11 +97,11 @@ let sfxIsActive = false;
 bgMusicBtn.addEventListener("click", e => {
     if (!sfxIsActive) {
         sfxIsActive = true;
-        bgMusicBtnIcon.src = "../assets/icons/active-sfx-icon.png";
+        bgMusicBtnIcon.src = "../static/assets/icons/active-sfx-icon.png";
         bgMusic.play();
     } else {
         sfxIsActive = false;
-        bgMusicBtnIcon.src = "../assets/icons/inactive-sfx-icon.png";
+        bgMusicBtnIcon.src = "../static/assets/icons/inactive-sfx-icon.png";
         bgMusic.pause();
     }
 });
@@ -83,13 +140,13 @@ canvas.addEventListener("mouseup", event => {
 
 // Player -----------
 const playerLeft = new Image();
-playerLeft.src = "../assets/sprites/diver-left.png";
+playerLeft.src = "../static/assets/sprites/diver-left.png";
 
 const playerRight = new Image();
-playerRight.src = "../assets/sprites/diver-right.png";
+playerRight.src = "../static/assets/sprites/diver-right.png";
 
 const swimSfx = document.createElement("audio");
-swimSfx.src = "../assets/sfx/pop-sound-1.wav";
+swimSfx.src = "../static/assets/sfx/pop-sound-1.wav";
 
 class Player {
     constructor() {
@@ -193,7 +250,7 @@ const player = new Player();
 const bubbles = [];
 
 const bubbleImage = new Image();
-bubbleImage.src = "../assets/sprites/bubble_pop_frame_01.png";
+bubbleImage.src = "../static/assets/sprites/bubble_pop_frame_01.png";
 
 class Bubble {
     constructor() {
@@ -228,10 +285,10 @@ class Bubble {
 }
 
 // const bubblePopSound1 = document.createElement("audio");
-// bubblePopSound1.src = "../assets/sfx/pop-sound-1.wav";
+// bubblePopSound1.src = "../static/assets/sfx/pop-sound-1.wav";
 
 const bubblePopSound2 = document.createElement("audio");
-bubblePopSound2.src = "../assets/sfx/pop-sound-2.ogg";
+bubblePopSound2.src = "../static/assets/sfx/pop-sound-2.ogg";
 
 const handleBubbles = () => {
     if (gameFrame % 70 == 0) {
@@ -265,7 +322,7 @@ const handleBubbles = () => {
 
 // Repeating Backgrounds ---------------
 const waveImg = new Image();
-waveImg.src = "../assets/images/wave-bg.png";
+waveImg.src = "../static/assets/images/wave-bg.png";
 
 const BG = {
     x1: 0,
@@ -382,14 +439,14 @@ class Animal {
 // const enemyImage1 = new Image();
 // const enemy1 = new Animal(enemyImage1, 418, 397);
 
-// enemyImage1.src = "../assets/sprites/enemy1.png";
+// enemyImage1.src = "../static/assets/sprites/enemy1.png";
 
 // const enemyImage2 = new Image();
-// enemyImage2.src = "../assets/sprites/enemy2.png";
+// enemyImage2.src = "../static/assets/sprites/enemy2.png";
 // const enemy2 = new Animal(enemyImage2, 498, 327);
 
 const turtleImg = new Image();
-turtleImg.src = "../assets/animals/turtle.png";
+turtleImg.src = "../static/assets/animals/turtle.png";
 
 const turtle = new Animal(
     "Turtles",
@@ -400,7 +457,7 @@ const turtle = new Animal(
 );
 
 const seaHorseImg = new Image();
-seaHorseImg.src = "../assets/animals/sea-horse.png";
+seaHorseImg.src = "../static/assets/animals/sea-horse.png";
 const seaHorse = new Animal(
     "Seahorses",
     seaHorseImg,
@@ -410,7 +467,7 @@ const seaHorse = new Animal(
 );
 
 const starfishImg = new Image();
-starfishImg.src = "../assets/animals/starfish.png";
+starfishImg.src = "../static/assets/animals/starfish.png";
 const starFish = new Animal(
     "Starfishes",
     starfishImg,
@@ -420,7 +477,7 @@ const starFish = new Animal(
 );
 
 const crabImg = new Image();
-crabImg.src = "../assets/animals/crab.png";
+crabImg.src = "../static/assets/animals/crab.png";
 const crab = new Animal(
     "Crabs",
     crabImg,
