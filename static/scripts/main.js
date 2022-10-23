@@ -122,6 +122,39 @@ let needToAnswer = false;
 
 let canvasPosition = canvas.getBoundingClientRect();
 
+const getRandomArbitrary = (min, max) => {
+    return Math.round(Math.random() * (max - min) + min);
+};
+
+const renderLikes = () => {
+    let maxLikes = getRandomArbitrary(50, 200);
+    let currentLikes = getRandomArbitrary(50, maxLikes);
+
+    numOfLikesEl.innerHTML = currentLikes;
+    maxLikesEl.innerHTML = maxLikes;
+
+    let percent = (currentLikes / maxLikes) * 100;
+
+    //Update color
+    document.documentElement.style.setProperty("--bar-fill", "#57e705");
+    document.documentElement.style.setProperty("--bar-top", "#6aff03");
+
+    if (percent <= 50) {
+        //yellows
+        document.documentElement.style.setProperty("--bar-fill", "#d6ed20");
+        document.documentElement.style.setProperty("--bar-top", "#d8ff48");
+    }
+    if (percent <= 25) {
+        //reds
+        document.documentElement.style.setProperty("--bar-fill", "#ec290a");
+        document.documentElement.style.setProperty("--bar-top", "#ff3818");
+    }
+
+    fills.forEach(fill => {
+        fill.style.width = percent + "%";
+    });
+};
+
 const mouse = {
     x: canvas.width / 2,
     y: canvas.height / 2,
@@ -431,6 +464,11 @@ class Animal {
                 speciesImg.src = this.img.src;
                 speciesStory.innerHTML = this.story;
                 currentAnimalEl.innerHTML = this.animalName;
+
+                // maxLikes = getRandomArbitrary(50, 200);
+                // currentLikes = getRandomArbitrary(50, maxLikes);
+
+                renderLikes();
             }
         }
     }
@@ -548,34 +586,3 @@ window.addEventListener("resize", e => {
 
 // ! PERCENTAGE BAR =========================================
 let fills = document.querySelectorAll(".likes_fill");
-
-let likes = 43;
-let maxLikes = 200;
-
-numOfLikesEl.innerHTML = likes;
-maxLikesEl.innerHTML = maxLikes;
-
-const renderLikes = () => {
-    let percent = (likes / maxLikes) * 100;
-
-    //Update color
-    document.documentElement.style.setProperty("--bar-fill", "#57e705");
-    document.documentElement.style.setProperty("--bar-top", "#6aff03");
-
-    if (percent <= 50) {
-        //yellows
-        document.documentElement.style.setProperty("--bar-fill", "#d6ed20");
-        document.documentElement.style.setProperty("--bar-top", "#d8ff48");
-    }
-    if (percent <= 25) {
-        //reds
-        document.documentElement.style.setProperty("--bar-fill", "#ec290a");
-        document.documentElement.style.setProperty("--bar-top", "#ff3818");
-    }
-
-    fills.forEach(fill => {
-        fill.style.width = percent + "%";
-    });
-};
-
-renderLikes();
