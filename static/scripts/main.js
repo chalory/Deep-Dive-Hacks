@@ -6,7 +6,6 @@ const userResponseResult = predictionResultContainer.querySelector(".user-respon
 
 userResponseForm.addEventListener("submit", e => {
     e.preventDefault();
-    console.log("submit");
 
     const userResponseValue = userResponse.value?.trim() || "";
 
@@ -27,7 +26,6 @@ userResponseForm.addEventListener("submit", e => {
 
                     const numberPattern = /\d+/g;
                     const results = final.match(numberPattern);
-                    console.log(results);
 
                     predictionResultContainer.classList.add("show");
 
@@ -39,8 +37,6 @@ userResponseForm.addEventListener("submit", e => {
                     } else {
                         userResponseResult.innerHTML = "Sad to know you don't like them.";
                     }
-
-                    u;
                 });
             } else {
                 userResponseResult.innerHTML = "Sorry, something went wrong.";
@@ -380,7 +376,6 @@ const handleBubbles = () => {
             if (!bubble.counted) {
                 // bubble collision
                 quizNeedToAnswer = true;
-                console.log("bubble collision");
 
                 const randomNum = getRandomArbitrary(0, quizList.length - 1);
                 const randomQuiz = quizList[randomNum];
@@ -389,9 +384,6 @@ const handleBubbles = () => {
 
                 checkAnsBtn.addEventListener("click", e => {
                     answerStatusEl.classList.add("show");
-
-                    console.log(answerEl);
-                    console.log(correctAns);
 
                     if (answerEl.value.trim().toLowerCase() === correctAns.toLowerCase()) {
                         answerStatusEl.textContent = "Correct!";
@@ -657,7 +649,6 @@ closeInfoBoxBtn.addEventListener("click", e => {
 });
 
 closeQuizBtn.addEventListener("click", e => {
-    console.log("click");
     infoBoxContainer.classList.remove("show");
     quizBox.classList.remove("show");
     quizNeedToAnswer = false;
