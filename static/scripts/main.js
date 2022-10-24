@@ -34,10 +34,10 @@ userResponseForm.addEventListener("submit", e => {
                     // positive review
                     if (results[0] === "1") {
                         userResponseResult.innerHTML = "Glad you love them too!";
-                    } else if (results[1] === "1") {
+                    } else if (results[0] === "0") {
                         userResponseResult.innerHTML = "Sad to know you don't like them.";
                     } else {
-                        userResponseResult.innerHTML = "Neutral response.";
+                        userResponseResult.innerHTML = "Sad to know you don't like them.";
                     }
 
                     u;
