@@ -23,7 +23,7 @@
     opacity: 1;
 }
 
-.info-box-container .bubble-btn {
+.bubble-btn {
     background: none;
     outline: none;
     border: none;
@@ -31,14 +31,15 @@
     z-index: 2;
     cursor: pointer;
     transition: all 0.25s;
+    z-index: 999;
 }
 
-.info-box-container .bubble-btn img {
+.bubble-btn img {
     width: 60px;
     object-fit: contain;
 }
 
-.close-btn {
+.bubble-btn {
     top: 2%;
     right: 1%;
 }
@@ -54,9 +55,88 @@
     transform: scale(1.1);
 }
 
+/* ! ============================== */
+/* ! ============================== */
+/* ! QUIZ BOX */
+.quiz-box {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background-image: url("../assets/images/quiz-box.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    transition: all 0.25s ease-in-out;
+
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.quiz-box.show {
+    width: 60%;
+    height: 100%;
+    padding: 0 15rem;
+    z-index: 99;
+    pointer-events: all;
+    opacity: 1;
+}
+
+.answer-status {
+    font-weight: 500;
+    margin-top: 1rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.answer-status.show {
+    opacity: 1;
+}
+
+.answer-container {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.answer-container input {
+    font-size: 1.05rem;
+    font-family: inherit;
+    padding: 0.5rem 1rem;
+}
+.answer-container button {
+    margin: 0 auto;
+    font-size: 1.05rem;
+    padding: 0.5rem 1.25rem;
+    margin-top: 1rem;
+    background: none;
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.answer-container button:hover {
+    background: #fff;
+    color: #000;
+}
+
+.quiz-el {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+/* ! ============================== */
+/* ! ============================== */
+
 .info-box {
     position: relative;
-    width: 55%;
 
     display: flex;
     flex-direction: column;
@@ -64,11 +144,12 @@
 
     background-image: url("../assets/images/info-box.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
 
     transition: all 0.25s ease-in-out;
 
+    width: 0;
     height: 0;
     opacity: 0;
     overflow: hidden;
@@ -76,6 +157,7 @@
 
 .info-box.show {
     height: 100%;
+    width: 55%;
     opacity: 1;
 }
 
@@ -178,6 +260,30 @@
 }
 
 /* ! FORM =================== */
+
+.help-the-cause {
+    position: absolute;
+    bottom: 100%;
+    left: -40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../assets/images/yellow-wide-btn.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 10rem;
+    padding: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    transition: all 0.25s;
+    font-weight: 500;
+}
+
+.help-the-cause:hover {
+    transform: scale(1.05);
+}
 .lower-content {
     position: absolute;
     bottom: 11%;
