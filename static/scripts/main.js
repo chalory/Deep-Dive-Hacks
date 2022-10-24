@@ -59,8 +59,13 @@ const canvas = document.querySelector(".canvas-1");
 
 const infoBoxContainer = document.querySelector(".info-box-container");
 const infoBox = infoBoxContainer.querySelector(".info-box");
+const quizBox = infoBoxContainer.querySelector(".quiz-box");
+const answerEl = infoBoxContainer.querySelector(".answer");
+const answerStatusEl = infoBoxContainer.querySelector(".answer-status");
+const checkAnsBtn = infoBoxContainer.querySelector(".check-ans-btn");
 
 const closeInfoBoxBtn = infoBoxContainer.querySelector(".close-btn");
+const closeQuizBtn = infoBoxContainer.querySelector(".close-quiz-btn");
 
 const speciesImg = document.querySelector(".species-img");
 const speciesStory = document.querySelector(".species-story");
@@ -75,6 +80,41 @@ factsBtn.addEventListener("click", e => {
     speciesStats.classList.toggle("hide");
     speciesStory.classList.toggle("show");
 });
+
+const quizHolder = document.querySelector(".quiz-el");
+
+const quizList = [
+    {
+        question: "About what percent of the Earth's surface is covered in water?",
+        "answers:": ["86%", "90%", "75%"],
+        correctAns: "75%",
+    },
+    {
+        question: "How many oceans are there?",
+        "answers:": ["5", "3", "7"],
+        correctAns: "5",
+    },
+    {
+        question: "Which is the largest ocean?",
+        "answers:": ["Pacific Ocean", "Atlantic Ocean", "Indian Ocean"],
+        correctAns: "Pacific Ocean",
+    },
+    {
+        question: "Which is the smallest ocean?",
+        "answers:": ["Arctic Ocean", "Indian Ocean", "Southern Ocean"],
+        correctAns: "Arctic Ocean",
+    },
+    {
+        question: "Which ocean did the European explorers sail in to get to America?",
+        "answers:": ["Atlantic Ocean", "Indian Ocean", "Southern Ocean"],
+        correctAns: "Atlantic Ocean",
+    },
+    {
+        question: "How many known species are thought to live in the Earth’s oceans?",
+        "answers:": ["230,000", "1,980,000", "534,320"],
+        correctAns: "230,000",
+    },
+];
 
 const ctx = canvas.getContext("2d");
 
@@ -119,6 +159,7 @@ let gameFrame = 0;
 let gameSpeed = 1;
 
 let needToAnswer = false;
+let quizNeedToAnswer = false;
 
 let canvasPosition = canvas.getBoundingClientRect();
 
@@ -337,6 +378,30 @@ const handleBubbles = () => {
             index--;
         } else if (bubble.distance < bubble.radius + player.radius) {
             if (!bubble.counted) {
+                // bubble collision
+                quizNeedToAnswer = true;
+                console.log("bubble collision");
+
+                const randomNum = getRandomArbitrary(0, quizList.length - 1);
+                const randomQuiz = quizList[randomNum];
+                const { question, answers, correctAns } = randomQuiz;
+                quizHolder.textContent = question;
+
+                checkAnsBtn.addEventListener("click", e => {
+                    answerStatusEl.classList.add("show");
+
+                    console.log(answerEl);
+                    console.log(correctAns);
+
+                    if (answerEl.value.trim().toLowerCase() === correctAns.toLowerCase()) {
+                        answerStatusEl.textContent = "Correct!";
+                        answerStatusEl.style.color = "#57E705";
+                    } else if (answerEl.value.trim().toLowerCase() !== correctAns.toLowerCase()) {
+                        answerStatusEl.textContent = `Wrong! The correct answer is: ${correctAns}`;
+                        answerStatusEl.style.color = "#E52524";
+                    }
+                });
+
                 if (bubble.sound === "sound1") {
                     bubblePopSound1.play();
                 } else {
@@ -556,17 +621,30 @@ const animate = () => {
 
     handleEnemies();
 
-    ctx.fillStyle = "black";
-    ctx.fillText("Score: " + score, 10, 30);
+    // ctx.fillStyle = "black";
+    // ctx.fillText("Score: " + score, 10, 30);
 
     gameFrame++;
 
-    if (!needToAnswer) {
+    if (!needToAnswer && !quizNeedToAnswer) {
         requestAnimationFrame(animate);
     } else {
+        if (needToAnswer) {
+            infoBox.classList.add("show");
+        }
+
+        if (quizNeedToAnswer) {
+            quizBox.classList.add("show");
+        }
+
         // show info/text box
         infoBoxContainer.classList.add("show");
-        infoBox.classList.add("show");
+    }
+
+    if (quizNeedToAnswer) {
+        // show info/text box
+        infoBoxContainer.classList.add("show");
+        quizBox.classList.add("show");
     }
 };
 
@@ -578,10 +656,20 @@ closeInfoBoxBtn.addEventListener("click", e => {
     requestAnimationFrame(animate);
 });
 
+closeQuizBtn.addEventListener("click", e => {
+    console.log("click");
+    infoBoxContainer.classList.remove("show");
+    quizBox.classList.remove("show");
+    quizNeedToAnswer = false;
+    requestAnimationFrame(animate);
+    answerStatusEl.classList.remove("show");
+    answerEl.textContent = "";
+});
+
 animate();
 
 window.addEventListener("resize", e => {
-    canvasPosition.canvas.getBoundingClientRect();
+    canvasPosition = canvas.getBoundingClientRect();
 });
 
 // ! PERCENTAGE BAR =========================================
